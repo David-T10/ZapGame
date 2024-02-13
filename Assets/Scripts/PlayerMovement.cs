@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Vector2 initialVelocity = Vector2.zero;
+
     private Rigidbody2D rb2d;
     private BoxCollider2D coll2d;
     private Animator animator;
@@ -13,14 +14,15 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float jumpValue = 7f;
     [SerializeField] private float movementSpeed = 7f;
+    [SerializeField] private LayerMask jumpableGround;
 
     private enum Movements{
         idle, running, jumping, falling
     }
     private void Awake()
     {
-      rb2d = gameObject.GetComponent<Rigidbody2D>();
-      coll2d = gameObject.GetComponent<Rigidbody2D>();  
+      rb2d = GetComponent<Rigidbody2D>();
+      coll2d = GetComponent<BoxCollider2D>();  
       animator = GetComponent<Animator>();
       spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -34,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && OnGround())
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpValue);
         }
@@ -42,10 +44,10 @@ public class PlayerMovement : MonoBehaviour
         xVal = Input.GetAxisRaw("Horizontal");
         rb2d.velocity = new Vector2(xVal * movementSpeed, rb2d.velocity.y);
 
-        PlayerAnimationController();
+        UpdatePlayerAnimation();
     }
 
-    private void PlayerAnimationController(){
+    private void UpdatePlayerAnimation(){
 
         Movements movementState;
         if (rb2d.velocity.x > 0f ){ //moving right
@@ -68,6 +70,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private bool OnGround(){
-        Physics2D.BoxCast(coll2d.bounds.center, coll2d.bounds.size, 0f, Vector2.down, .1f, )
+        return Physics2D.BoxCast(coll2d.bounds.center, coll2d.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 }
