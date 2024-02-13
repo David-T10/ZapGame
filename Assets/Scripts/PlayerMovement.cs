@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Vector2 initialVelocity = Vector2.zero;
-    private Rigidbody2D rb;
+    private Rigidbody2D rb2d;
+    private BoxCollider2D coll2d;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private float xVal;
@@ -18,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Awake()
     {
-      rb = gameObject.GetComponent<Rigidbody2D>();  
+      rb2d = gameObject.GetComponent<Rigidbody2D>();
+      coll2d = gameObject.GetComponent<Rigidbody2D>();  
       animator = GetComponent<Animator>();
       spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        rb.velocity = initialVelocity;
+        rb2d.velocity = initialVelocity;
     }
 
     // Update is called once per frame
@@ -34,11 +36,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpValue);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpValue);
         }
 
         xVal = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(xVal * movementSpeed, rb.velocity.y);
+        rb2d.velocity = new Vector2(xVal * movementSpeed, rb2d.velocity.y);
 
         PlayerAnimationController();
     }
@@ -46,22 +48,26 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerAnimationController(){
 
         Movements movementState;
-        if (rb.velocity.x > 0f ){ //moving right
+        if (rb2d.velocity.x > 0f ){ //moving right
             spriteRenderer.flipX = false;
             movementState = Movements.running;
-        } else if (rb.velocity.x < 0f){ //moving left
+        } else if (rb2d.velocity.x < 0f){ //moving left
             spriteRenderer.flipX = true;
             movementState = Movements.running;
         }else {
             movementState = Movements.idle;
         }
 
-        if(rb.velocity.y > .1f){
+        if(rb2d.velocity.y > .1f){
             movementState = Movements.jumping;
-        } else if (rb.velocity.y < -.1f){
+        } else if (rb2d.velocity.y < -.1f){
             movementState =Movements.falling;
         }
 
         animator.SetInteger("movementState", (int)movementState);
+    }
+
+    private bool OnGround(){
+        Physics2D.BoxCast(coll2d.bounds.center, coll2d.bounds.size, 0f, Vector2.down, .1f, )
     }
 }
