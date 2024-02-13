@@ -10,8 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float xVal;
 
-    [SerializeField] private float jumpValue = 5f;
+    [SerializeField] private float jumpValue = 7f;
     [SerializeField] private float movementSpeed = 7f;
+
+    private enum Movements{
+        idle, running, jumping, falling
+    }
     private void Awake()
     {
       rb = gameObject.GetComponent<Rigidbody2D>();  
@@ -41,14 +45,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerAnimationController(){
 
-        if (xVal > 0f ){ //moving right
+        Movements movementState;
+        if (rb.velocity.x > 0f ){ //moving right
             spriteRenderer.flipX = false;
-            animator.SetBool("running",true);
-        } else if (xVal < 0f){ //moving left
+            movementState = Movements.running;
+        } else if (rb.velocity.x < 0f){ //moving left
             spriteRenderer.flipX = true;
-            animator.SetBool("running",true);
+            movementState = Movements.running;
         }else {
-            animator.SetBool("running",false);
+            movementState = Movements.idle;
         }
+
+        if(rb.velocity.y > .1f){
+            movementState = Movements.jumping;
+        } else if (rb.velocity.y < -.1f){
+            movementState =Movements.falling;
+        }
+
+        animator.SetInteger("movementState", (int)movementState);
     }
 }
