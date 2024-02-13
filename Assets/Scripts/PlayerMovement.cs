@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private float xVal;
+
+    [SerializeField] private float jumpValue = 5f;
+    [SerializeField] private float movementSpeed = 7f;
     private void Awake()
     {
       rb = gameObject.GetComponent<Rigidbody2D>();  
@@ -27,11 +30,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x,10f);
+            rb.velocity = new Vector2(rb.velocity.x, jumpValue);
         }
 
         xVal = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(xVal * 7f, rb.velocity.y);
+        rb.velocity = new Vector2(xVal * movementSpeed, rb.velocity.y);
 
         PlayerAnimationController();
     }
