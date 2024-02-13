@@ -6,9 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Vector2 initialVelocity = Vector2.zero;
     private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private float xVal;
     private void Awake()
     {
       rb = gameObject.GetComponent<Rigidbody2D>();  
+      animator = GetComponent<Animator>();
+      spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
     // Start is called before the first frame update
@@ -25,7 +30,22 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x,10f);
         }
 
-        float xVal = Input.GetAxisRaw("Horizontal");
+        xVal = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(xVal * 7f, rb.velocity.y);
+
+        PlayerAnimationController();
+    }
+
+    private void PlayerAnimationController(){
+
+        if (xVal > 0f ){ //moving right
+            spriteRenderer.flipX = false;
+            animator.SetBool("running",true);
+        } else if (xVal < 0f){ //moving left
+            spriteRenderer.flipX = true;
+            animator.SetBool("running",true);
+        }else {
+            animator.SetBool("running",false);
+        }
     }
 }
