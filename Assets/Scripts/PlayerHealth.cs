@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -28,5 +29,9 @@ public class PlayerHealth : MonoBehaviour
     private void Death() {
         rb2d.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
+    }
+
+    private void Regenerate() { 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
