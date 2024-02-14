@@ -20,12 +20,6 @@ public class PlayerHealth : MonoBehaviour
         } 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void Death() {
         rb2d.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
