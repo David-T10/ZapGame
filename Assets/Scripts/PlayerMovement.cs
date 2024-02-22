@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float xVal;
 
-    [SerializeField] private float jumpValue = 7f;
+    [SerializeField] private float jumpValue = 5f;
     [SerializeField] private float movementSpeed = 7f;
     [SerializeField] private LayerMask jumpableGround;
 
@@ -71,5 +71,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnGround(){
         return Physics2D.BoxCast(coll2d.bounds.center, coll2d.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+    }
+
+    public float GetJumpValue() {
+        return jumpValue;
+    }
+
+    public void SetJumpValue(float newVal) {
+        jumpValue = newVal;
     }
 }

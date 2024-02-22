@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static ItemPickup;
 
 public class ItemPickup : MonoBehaviour
 {
+    private PlayerMovement playerMovement;
+
     public struct FruitData
     {
         public Color color;
@@ -25,11 +28,15 @@ public class ItemPickup : MonoBehaviour
     private Color originalSpriteColor;
     private float powerUpDuration = 10.0f;
     private int startingFruitsCount = 0;
+    private float doubleJumpVal;
+    private float originalJumpVal;
     [SerializeField] private Text appleCounterText;
     [SerializeField] private Text bananaCounterText;
 
     private void Awake() {
-
+        playerMovement = GetComponent<PlayerMovement>();
+        originalJumpVal = playerMovement.GetJumpValue();
+        doubleJumpVal = originalJumpVal * 2;
         playerSprite = GetComponent<SpriteRenderer>();
         originalSpriteColor = playerSprite.color;
         fruitDataMap.Add("Apple", new FruitData(orange, startingFruitsCount));
@@ -51,16 +58,19 @@ public class ItemPickup : MonoBehaviour
             {
                 appleCounterText.text = "Apples: " + fruitData.count;
                 ApplePowerUp();
+                StartCoroutine(RevertJumpValAfter(powerUpDuration));
             }
             else if (collision.gameObject.tag == "Banana")
             {
                 bananaCounterText.text = "Bananas: " + fruitData.count;
                 BananaPowerUp();
             }
+            fruitDataMap[collision.gameObject.tag] = fruitData;
         }
-        }
+    }
 
     private void ApplePowerUp() {
+        playerMovement.SetJumpValue(doubleJumpVal);
     }
 
     private void BananaPowerUp()
@@ -71,5 +81,13 @@ public class ItemPickup : MonoBehaviour
     private IEnumerator RevertColorAfter(float timeDelay) {
         yield return new WaitForSeconds(timeDelay);
         playerSprite.color = originalSpriteColor;
+        playerMovement.SetJumpValue(originalJumpVal);
     }
+
+    private IEnumerator RevertJumpValAfter(float timeDelay)
+    {
+        yield return new WaitForSeconds(timeDelay);
+        playerMovement.SetJumpValue(originalJumpVal);
+    }
+
 }
