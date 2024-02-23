@@ -80,4 +80,14 @@ public class PlayerMovement : MonoBehaviour
     public void SetJumpValue(float newVal) {
         jumpValue = newVal;
     }
+
+    public float GetMovementSpeedValue()
+    {
+        return movementSpeed;
+    }
+
+    public void SetMovementSpeedValue(float newVal)
+    {
+        movementSpeed = newVal;
+    }
 }

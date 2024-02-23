@@ -30,12 +30,16 @@ public class ItemPickup : MonoBehaviour
     private int startingFruitsCount = 0;
     private float doubleJumpVal;
     private float originalJumpVal;
+    private float originalMovementSpeedVal;
+    private float doubleMovementSpeedVal;
     [SerializeField] private Text appleCounterText;
     [SerializeField] private Text bananaCounterText;
 
     private void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
         originalJumpVal = playerMovement.GetJumpValue();
+        originalMovementSpeedVal = playerMovement.GetMovementSpeedValue();
+        doubleMovementSpeedVal = originalMovementSpeedVal * 2;
         doubleJumpVal = originalJumpVal * 2;
         playerSprite = GetComponent<SpriteRenderer>();
         originalSpriteColor = playerSprite.color;
@@ -64,6 +68,7 @@ public class ItemPickup : MonoBehaviour
             {
                 bananaCounterText.text = "Bananas: " + fruitData.count;
                 BananaPowerUp();
+                StartCoroutine(RevertSpeedValAfter(powerUpDuration));
             }
             fruitDataMap[collision.gameObject.tag] = fruitData;
         }
@@ -75,19 +80,25 @@ public class ItemPickup : MonoBehaviour
 
     private void BananaPowerUp()
     {
+        playerMovement.SetMovementSpeedValue(doubleMovementSpeedVal);
     }
 
 
     private IEnumerator RevertColorAfter(float timeDelay) {
         yield return new WaitForSeconds(timeDelay);
         playerSprite.color = originalSpriteColor;
-        playerMovement.SetJumpValue(originalJumpVal);
     }
 
     private IEnumerator RevertJumpValAfter(float timeDelay)
     {
         yield return new WaitForSeconds(timeDelay);
         playerMovement.SetJumpValue(originalJumpVal);
+    }
+
+    private IEnumerator RevertSpeedValAfter(float timeDelay)
+    {
+        yield return new WaitForSeconds(timeDelay);
+        playerMovement.SetMovementSpeedValue(originalMovementSpeedVal);
     }
 
 }
