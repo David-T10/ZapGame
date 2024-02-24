@@ -16,17 +16,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeed = 7f;
     [SerializeField] private LayerMask jumpableGround;
 
-    private enum Movements{
+    private enum Movements
+    {
         idle, running, jumping, falling
     }
+
     private void Awake()
     {
-      rb2d = GetComponent<Rigidbody2D>();
-      coll2d = GetComponent<BoxCollider2D>();  
-      animator = GetComponent<Animator>();
-      spriteRenderer = GetComponent<SpriteRenderer>();
+        rb2d = GetComponent<Rigidbody2D>();
+        coll2d = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -47,37 +50,49 @@ public class PlayerMovement : MonoBehaviour
         UpdatePlayerAnimation();
     }
 
-    private void UpdatePlayerAnimation(){
+    private void UpdatePlayerAnimation()
+    {
 
         Movements movementState;
-        if (rb2d.velocity.x > 0f ){ //moving right
+        if (rb2d.velocity.x > 0f)
+        { //moving right
             spriteRenderer.flipX = false;
             movementState = Movements.running;
-        } else if (rb2d.velocity.x < 0f){ //moving left
+        }
+        else if (rb2d.velocity.x < 0f)
+        { //moving left
             spriteRenderer.flipX = true;
             movementState = Movements.running;
-        }else {
+        }
+        else
+        {
             movementState = Movements.idle;
         }
 
-        if(rb2d.velocity.y > .1f){
+        if (rb2d.velocity.y > .1f)
+        {
             movementState = Movements.jumping;
-        } else if (rb2d.velocity.y < -.1f){
-            movementState =Movements.falling;
+        }
+        else if (rb2d.velocity.y < -.1f)
+        {
+            movementState = Movements.falling;
         }
 
         animator.SetInteger("movementState", (int)movementState);
     }
 
-    private bool OnGround(){
+    private bool OnGround()
+    {
         return Physics2D.BoxCast(coll2d.bounds.center, coll2d.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 
-    public float GetJumpValue() {
+    public float GetJumpValue()
+    {
         return jumpValue;
     }
 
-    public void SetJumpValue(float newVal) {
+    public void SetJumpValue(float newVal)
+    {
         jumpValue = newVal;
     }
 
