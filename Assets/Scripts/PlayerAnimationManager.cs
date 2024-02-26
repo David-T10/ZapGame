@@ -49,4 +49,10 @@ public class PlayerAnimationManager : MonoBehaviour
 
         animator.SetInteger("movementState", (int)movementState);
     }
+
+    public void DeathAnimation() 
+    {
+        rb2d.bodyType = RigidbodyType2D.Static;
+        animator.SetTrigger("death");
+    }
 }

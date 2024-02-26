@@ -9,6 +9,7 @@ TagManager:
   - Spike
   - InstantKillTrap
   - Banana
+  - FallDetector
   layers:
   - Default
   - TransparentFX
