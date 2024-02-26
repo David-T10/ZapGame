@@ -651,6 +651,7 @@ GameObject:
   - component: {fileID: 866066496}
   - component: {fileID: 866066497}
   - component: {fileID: 866066498}
+  - component: {fileID: 866066499}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Player
@@ -809,7 +810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6678f643b6b6d459179c87393c7d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialVelocity: {x: 0, y: 0}
   jumpValue: 7
   movementSpeed: 7
   jumpableGround:
@@ -958,6 +958,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &866066499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866066489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7c3ac0b6b98044597c28fed8fdaaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &908681820 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7141442388205175493, guid: 2da4c007a4abdef42b836d2ea161a334, type: 3}

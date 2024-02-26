@@ -62,25 +62,25 @@ public class ItemPickup : MonoBehaviour
             {
                 appleCounterText.text = "Apples: " + fruitData.count;
                 ApplePowerUp();
-                StartCoroutine(RevertJumpValAfter(powerUpDuration));
             }
             else if (collision.gameObject.tag == "Banana")
             {
                 bananaCounterText.text = "Bananas: " + fruitData.count;
                 BananaPowerUp();
-                StartCoroutine(RevertSpeedValAfter(powerUpDuration));
             }
             fruitDataMap[collision.gameObject.tag] = fruitData;
         }
     }
 
     private void ApplePowerUp() {
-        playerMovement.SetJumpValue(doubleJumpVal);
+        playerMovement.UpdateJumpCommand(doubleJumpVal);
+        StartCoroutine(RevertJumpValAfter(powerUpDuration));
     }
 
     private void BananaPowerUp()
     {
         playerMovement.SetMovementSpeedValue(doubleMovementSpeedVal);
+        StartCoroutine(RevertSpeedValAfter(powerUpDuration));
     }
 
 
@@ -92,7 +92,7 @@ public class ItemPickup : MonoBehaviour
     private IEnumerator RevertJumpValAfter(float timeDelay)
     {
         yield return new WaitForSeconds(timeDelay);
-        playerMovement.SetJumpValue(originalJumpVal);
+        playerMovement.UpdateJumpCommand(originalJumpVal);
     }
 
     private IEnumerator RevertSpeedValAfter(float timeDelay)
