@@ -34,6 +34,7 @@ public class ItemPickup : MonoBehaviour
     private float doubleMovementSpeedVal;
     [SerializeField] private Text appleCounterText;
     [SerializeField] private Text bananaCounterText;
+    [SerializeField] private AudioSource itemCollectionSoundEffect;
 
     private void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
@@ -53,6 +54,7 @@ public class ItemPickup : MonoBehaviour
         {
             
             FruitData fruitData = fruitDataMap[collision.gameObject.tag];
+            itemCollectionSoundEffect.Play();
             Destroy(collision.gameObject);
             fruitData.count++;
             playerSprite.color = fruitData.color;

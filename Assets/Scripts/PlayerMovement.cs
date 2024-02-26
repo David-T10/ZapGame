@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpValue = 5f;
     [SerializeField] private float movementSpeed = 7f;
     [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private AudioSource jumpSoundEffect;
 
     public float GetJumpValue()
     {
@@ -53,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && OnGround())
         {
+            jumpSoundEffect.Play();
             jumpCmd.Execute();
         }
 
