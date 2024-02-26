@@ -10,6 +10,7 @@ TagManager:
   - InstantKillTrap
   - Banana
   - FallDetector
+  - FinishFlag
   layers:
   - Default
   - TransparentFX
