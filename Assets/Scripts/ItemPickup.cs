@@ -26,7 +26,7 @@ public class ItemPickup : MonoBehaviour
     Color orange = new Color(1f, 0.5f, 0f, 1f);
     Color yellow = new Color(1f, 0.92f, 0.016f, 1f);
     private Color originalSpriteColor;
-    private float powerUpDuration = 10.0f;
+    private float powerUpDuration = 4.0f;
     private int startingFruitsCount = 0;
     private float doubleJumpVal;
     private float originalJumpVal;

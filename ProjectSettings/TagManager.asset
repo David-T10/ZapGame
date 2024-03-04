@@ -11,6 +11,7 @@ TagManager:
   - Banana
   - FallDetector
   - FinishFlag
+  - Trampoline
   layers:
   - Default
   - TransparentFX
