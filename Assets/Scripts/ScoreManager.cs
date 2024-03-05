@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     private const string SCORE_KEY = "PlayerScore";
     private int score = 0;
+    [SerializeField] private Text scoreCounterText;
 
     private void Start() 
     {
         LoadScore();
+        UpdateScoreOnScreen();
     }
 
     public void IncrementScore(int points) 
     {
         score += points;
         SaveScore();
+        UpdateScoreOnScreen();
     }
 
     public void ResetScore() 
     {
         score = 0;
         SaveScore();
+        UpdateScoreOnScreen();
     }
 
     public void SaveScore() 
@@ -42,5 +47,10 @@ public class ScoreManager : MonoBehaviour
     private void OnEnable() 
     {
         LoadScore();
+    }
+
+    public void UpdateScoreOnScreen() 
+    {
+        scoreCounterText.text = "Score: " + score.ToString();
     }
 }

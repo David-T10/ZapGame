@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using static ItemPickup;
 
 public class ItemPickup : MonoBehaviour
@@ -34,11 +33,10 @@ public class ItemPickup : MonoBehaviour
     private float originalJumpVal;
     private float originalMovementSpeedVal;
     private float doubleMovementSpeedVal;
-    [SerializeField] private Text scoreCounterText;
     [SerializeField] private AudioSource itemCollectionSoundEffect;
 
     private void Awake() {
-        scoreManager = GameObject.FindObjectTypeOf<scoreManager>();
+        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
         playerMovement = GetComponent<PlayerMovement>();
         originalJumpVal = playerMovement.GetJumpValue();
         originalMovementSpeedVal = playerMovement.GetMovementSpeedValue();
@@ -65,12 +63,13 @@ public class ItemPickup : MonoBehaviour
             if (collision.gameObject.tag == "Apple")
             {
                 scoreManager.IncrementScore(appleScore);
-                scoreCounterText.text = "Score: " + fruitData.count * appleScore;
+                scoreManager.UpdateScoreOnScreen();
                 ApplePowerUp();
             }
             else if (collision.gameObject.tag == "Banana")
             {
-                scoreCounterText.text = "Score: " + fruitData.count * bananaScore;
+                scoreManager.IncrementScore(bananaScore);
+                scoreManager.UpdateScoreOnScreen();
                 BananaPowerUp();
             }
             fruitDataMap[collision.gameObject.tag] = fruitData;

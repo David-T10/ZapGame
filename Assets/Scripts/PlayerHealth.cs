@@ -7,12 +7,14 @@ public class PlayerHealth : MonoBehaviour
 {
     private PlayerAnimationManager playerAnimationManager;
     private Rigidbody2D rb2d;
+    private ScoreManager scoreManager;
     private Vector3 respawnPoint;
     public GameObject fallDetector;
     [SerializeField] private AudioSource deathSoundEffect;
 
     private void Awake()
     {
+        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
         rb2d = GetComponent<Rigidbody2D>();
         playerAnimationManager = GetComponent<PlayerAnimationManager>();
     }
@@ -42,11 +44,10 @@ public class PlayerHealth : MonoBehaviour
     private void Death() {
         deathSoundEffect.Play();
         playerAnimationManager.DeathAnimation();
+        scoreManager.ResetScore();
     }
 
     private void Regenerate() { 
-        //transform.position = respawnPoint;
-        //playerAnimationManager.Upda
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
