@@ -7,9 +7,12 @@ public class Finishlevel : MonoBehaviour
 {
     private AudioSource finishSoundEffect;
     private bool finishedLevel = false;
+    private ScoreManager scoreManager;
+    private int completeLevelScore = 10;
 
     private void Start()
     {
+        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
         finishSoundEffect = GetComponent<AudioSource>();
     }
 
@@ -25,6 +28,7 @@ public class Finishlevel : MonoBehaviour
 
     private void CompleteLevel()
     {
+        scoreManager.IncrementScore(completeLevelScore);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
