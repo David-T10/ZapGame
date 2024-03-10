@@ -22,6 +22,13 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreOnScreen();
     }
 
+    public void DecrementScore(int points)
+    {
+        score -= points;
+        SaveScore();
+        UpdateScoreOnScreen();
+    }
+
     public void ResetScore() 
     {
         score = 0;

@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
 
         xInputVal = Input.GetAxisRaw("Horizontal");
         rb2d.velocity = new Vector2(xInputVal * GetMovementSpeedValue(), rb2d.velocity.y);
-        rb2d.velocity = new Vector2(xInputVal * GetMovementSpeedValue(), rb2d.velocity.y);
 
         playerAnimationManager.UpdateAnimation();
         

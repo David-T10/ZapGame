@@ -12,6 +12,8 @@ TagManager:
   - FallDetector
   - FinishFlag
   - Trampoline
+  - SpikeTrap
+  - FireTrap
   layers:
   - Default
   - TransparentFX
