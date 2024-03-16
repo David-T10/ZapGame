@@ -9,6 +9,9 @@ public class ScoreManager : MonoBehaviour
     private int score = 0;
     [SerializeField] private Text scoreCounterText;
 
+    private static ScoreManager instance;
+
+    
     private void Start() 
     {
         LoadScore();
@@ -58,6 +61,9 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateScoreOnScreen() 
     {
-        scoreCounterText.text = "Score: " + score.ToString();
+        if (scoreCounterText != null)
+        {
+            scoreCounterText.text = "Score: " + score.ToString();
+        }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ItemPickup;
+using UnityEngine.UI;
 
 public class ItemPickup : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class ItemPickup : MonoBehaviour
     }
 
     private Dictionary<string, FruitData> fruitDataMap = new Dictionary<string, FruitData>();
-    private ScoreManager scoreManager;
+    private UIScore uiScore;
     private SpriteRenderer playerSprite;
     Color orange = new Color(1f, 0.5f, 0f, 1f);
     Color yellow = new Color(1f, 0.92f, 0.016f, 1f);
@@ -35,8 +35,9 @@ public class ItemPickup : MonoBehaviour
     private float doubleMovementSpeedVal;
     [SerializeField] private AudioSource itemCollectionSoundEffect;
 
-    private void Awake() {
-        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
+    private void Awake()
+    {
+        uiScore = FindObjectOfType<UIScore>(); // Use FindObjectOfType directly
         playerMovement = GetComponent<PlayerMovement>();
         originalJumpVal = playerMovement.GetJumpValue();
         originalMovementSpeedVal = playerMovement.GetMovementSpeedValue();
@@ -46,13 +47,12 @@ public class ItemPickup : MonoBehaviour
         originalSpriteColor = playerSprite.color;
         fruitDataMap.Add("Apple", new FruitData(orange, startingFruitsCount));
         fruitDataMap.Add("Banana", new FruitData(yellow, startingFruitsCount));
-
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (fruitDataMap.ContainsKey(collision.gameObject.tag))
         {
-            
             FruitData fruitData = fruitDataMap[collision.gameObject.tag];
             itemCollectionSoundEffect.Play();
             Destroy(collision.gameObject);
@@ -60,23 +60,24 @@ public class ItemPickup : MonoBehaviour
             playerSprite.color = fruitData.color;
             StartCoroutine(RevertColorAfter(powerUpDuration));
 
+            // Pass the score gained from collecting the item to IncrementScore
             if (collision.gameObject.tag == "Apple")
             {
-                scoreManager.IncrementScore(appleScore);
-                scoreManager.UpdateScoreOnScreen();
+                uiScore.IncrementScore(appleScore);
                 ApplePowerUp();
             }
             else if (collision.gameObject.tag == "Banana")
             {
-                scoreManager.IncrementScore(bananaScore);
-                scoreManager.UpdateScoreOnScreen();
+                uiScore.IncrementScore(bananaScore);
                 BananaPowerUp();
             }
+            // No need to update the score UI here
             fruitDataMap[collision.gameObject.tag] = fruitData;
         }
     }
 
-    private void ApplePowerUp() {
+    private void ApplePowerUp()
+    {
         playerMovement.UpdateJumpCommand(doubleJumpVal);
         StartCoroutine(RevertJumpValAfter(powerUpDuration));
     }
@@ -87,8 +88,8 @@ public class ItemPickup : MonoBehaviour
         StartCoroutine(RevertSpeedValAfter(powerUpDuration));
     }
 
-
-    private IEnumerator RevertColorAfter(float timeDelay) {
+    private IEnumerator RevertColorAfter(float timeDelay)
+    {
         yield return new WaitForSeconds(timeDelay);
         playerSprite.color = originalSpriteColor;
     }
@@ -104,5 +105,4 @@ public class ItemPickup : MonoBehaviour
         yield return new WaitForSeconds(timeDelay);
         playerMovement.SetMovementSpeedValue(originalMovementSpeedVal);
     }
-
 }
