@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour
 {
-    private float bounceForce = 35f;
+    [SerializeField] private float bounceForce = 35f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -9,4 +9,9 @@ public class StartMenuBtn : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
     }
+
+    public void StartTutorial() 
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + );
+    }
 }

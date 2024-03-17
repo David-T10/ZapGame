@@ -23,6 +23,7 @@ public class UIScore : MonoBehaviour
 
     public void UpdateScoreOnUI(int score)
     {
+        GameData.playerScore -= int.Parse(scoreCounterText.text);
         scoreCounterText.text = score.ToString();
         GameData.playerScore += score;
     }
