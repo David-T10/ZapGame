@@ -14,4 +14,9 @@ public class StartMenuBtn : MonoBehaviour
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + );
     }
+
+    public void ShowLeaderboard() 
+    {
+        //SceneManager.LoadScene(SceneManager.GetScene().buildIndex + 1);
+    }
 }
