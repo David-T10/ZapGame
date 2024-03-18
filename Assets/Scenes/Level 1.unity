@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 4
 --- !u!1001 &1259687607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 4
 --- !u!1001 &1348201719
 PrefabInstance:
   m_ObjectHideFlags: 0

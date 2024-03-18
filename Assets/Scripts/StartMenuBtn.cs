@@ -7,16 +7,21 @@ public class StartMenuBtn : MonoBehaviour
 {
     public void StartGame() 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+        SceneManager.LoadScene("Level 1");
     }
 
     public void StartTutorial() 
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + );
+        SceneManager.LoadScene("Tutorial Level");
     }
 
     public void ShowLeaderboard() 
     {
-        //SceneManager.LoadScene(SceneManager.GetScene().buildIndex + 1);
+        SceneManager.LoadScene("Leaderboard");
+    }
+
+    public void ShowCredits() 
+    {
+        SceneManager.LoadScene("End Screen");
     }
 }

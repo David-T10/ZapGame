@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1001 &182897853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1001 &419315399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1 &465292492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1001 &739174556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1982,7 +1982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1 &820769554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,7 +2972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1001 &1341601006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3454,7 +3454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1 &1476209632
 GameObject:
   m_ObjectHideFlags: 0
@@ -57592,7 +57592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1 &1596015269
 GameObject:
   m_ObjectHideFlags: 0
@@ -61286,7 +61286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1001 &2050637877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61541,7 +61541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 3.5
 --- !u!1001 &3904276972485099349
 PrefabInstance:
   m_ObjectHideFlags: 0

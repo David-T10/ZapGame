@@ -1559,7 +1559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 4
 --- !u!4 &866066492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1366747671788482648, guid: 90cc65cc85e75274799d5a8265cbfc9d, type: 3}
@@ -2158,7 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 4
 --- !u!1 &1325919803
 GameObject:
   m_ObjectHideFlags: 0
@@ -20305,7 +20305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d8265b67ee5442b029b2d23a40b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 7
+  bounceForce: 4
 --- !u!1001 &3816132404987960908
 PrefabInstance:
   m_ObjectHideFlags: 0
