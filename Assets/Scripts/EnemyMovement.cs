@@ -9,83 +9,64 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rb2d;
     private BoxCollider2D coll2d;
     public Transform playerPosition;
-    public bool chasing;
+    public EnemyState currentState;
     public bool canJump;
-    private Command enemyJumpCmd;
-    [SerializeField] public float enemyRange;
-    [SerializeField] public float enemyJumpForce = 2f;
-    [SerializeField] public float jumpCooldown = 1f;
-    [SerializeField] public float moveSpeed;
+    public float enemyRange;
+    public float enemyJumpForce = 2f;
+    public float jumpCooldown = 1f;
+    public float moveSpeed;
     public int patrolDestination;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         coll2d = GetComponent<BoxCollider2D>();
-        enemyJumpCmd = new JumpCommand(GetComponent<Rigidbody2D>(), enemyJumpForce);
+        currentState = new PatrollingState(this);
     }
 
     public void Update()
     {
+        currentState.UpdateState();
+    }
 
-        if (chasing)
+    public void TransitionToState(EnemyState newState)
+    {
+        currentState = newState;
+    }
+
+    public void Move(Vector2 direction)
+    {
+        transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+    }
+
+    public void FlipSprite(float directionX)
+    {
+        if (directionX > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (directionX < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+    }
+
+    public bool PlayerInRange()
+    {
+        return Vector2.Distance(transform.position, playerPosition.position) < enemyRange;
+    }
+
+    public void Jump()
+    {
+        if (OnGround())
         {
-            EnemyJump();
-            if (transform.position.x > playerPosition.position.x)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-            }
-            if (transform.position.x < playerPosition.position.x)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-            }
-        }
-        else
-        {
-            if (Vector2.Distance(transform.position, playerPosition.position) < enemyRange)
-            {
-                chasing = true;
-            }
-            if (patrolDestination == 0)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, patrolPoints[0].position, moveSpeed * Time.deltaTime);
-                if (Vector2.Distance(transform.position, patrolPoints[0].position) < .2f)
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                    patrolDestination = 1;
-                }
-            }
-            if (patrolDestination == 1)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, patrolPoints[1].position, moveSpeed * Time.deltaTime);
-                if (Vector2.Distance(transform.position, patrolPoints[1].position) < .2f)
-                {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                    patrolDestination = 0;
-                }
-            }
+            rb2d.AddForce(Vector2.up * enemyJumpForce, ForceMode2D.Impulse);
         }
     }
 
-    private IEnumerator JumpCooldown()
+    public IEnumerator StartJumpCooldown()
     {
         yield return new WaitForSeconds(jumpCooldown);
         canJump = true;
     }
 
-    private void EnemyJump() 
-    {
-        if (OnGround()) 
-        {
-            enemyJumpCmd.Execute();
-            canJump = false;
-            StartCoroutine(JumpCooldown());
-        }
-    }
-
-    private bool OnGround()
+    public bool OnGround()
     {
         return Physics2D.BoxCast(coll2d.bounds.center, coll2d.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
