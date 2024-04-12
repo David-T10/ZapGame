@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
         hints.Add("Trampolines give you \na jump boost!");
         hints.Add("Collect bananas for a \nspeed boost and +3 score!");
         hints.Add("Falling or losing all \nyour health means death, score resets to 0!");
+        hints.Add("Beware of frogs!");
         hints.Add("Finishing the level \ngives you extra points!");
 
         StartCoroutine(ShowHints());

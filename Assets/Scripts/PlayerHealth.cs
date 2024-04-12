@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     private float spikeTrapDamage = -20f;
     private float fireTrapDamage = -30f;
     private float fallDamage = -100f;
+    private float frogDamage = -30f;
 
     private void Awake()
     {
@@ -37,28 +38,44 @@ public class PlayerHealth : MonoBehaviour
         playerAnimationManager.UpdateAnimation();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.CompareTag("SpikeTrap"))
         {
-            uiHealth.UpdateHeath(spikeTrapDamage);
-            if (uiHealth.GetCurrentHealth() <= 0)
-            {
-                Death();
-            }
+            HandleTrapCollision(spikeTrapDamage);
         }
-        else if (collision.gameObject.CompareTag("FireTrap")) 
+        else if (collision.gameObject.CompareTag("FireTrap"))
         {
-            uiHealth.UpdateHeath(fireTrapDamage);
-            if(uiHealth.GetCurrentHealth() <= 0) 
-            {
-                Death();
-            }
+            HandleTrapCollision(fireTrapDamage);
+        }
+        else if (collision.gameObject.CompareTag("Frog"))
+        {
+            HandleTrapCollision(frogDamage);
         }
         else if (collision.gameObject.CompareTag("FallDetector"))
         {
-            uiHealth.UpdateHeath(fallDamage);
+            HandleFall();
+        }
+    }
+
+    private void HandleTrapCollision(float damage)
+    {
+        uiHealth.UpdateHealth(damage);
+        CheckDeath();
+    }
+
+    private void HandleFall()
+    {
+        uiHealth.UpdateHealth(fallDamage);
+        Death();
+    }
+
+    private void CheckDeath()
+    {
+        if (uiHealth.GetCurrentHealth() <= 0)
+        {
             Death();
-        } 
+        }
     }
 
     private void Death() {

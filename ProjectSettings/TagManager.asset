@@ -14,6 +14,7 @@ TagManager:
   - Trampoline
   - SpikeTrap
   - FireTrap
+  - Frog
   layers:
   - Default
   - TransparentFX
