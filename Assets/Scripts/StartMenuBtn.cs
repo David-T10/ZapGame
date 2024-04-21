@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuBtn : MonoBehaviour
 {
+    [SerializeField] private AudioSource mainMenuMusic; 
+
     public void StartGame() 
     {
         SceneManager.LoadScene("Level 1");
@@ -23,5 +25,13 @@ public class StartMenuBtn : MonoBehaviour
     public void ShowCredits() 
     {
         SceneManager.LoadScene("End Screen");
+    }
+
+    public void ToggleMute()
+    {
+        if(mainMenuMusic != null)
+        {
+            mainMenuMusic.volume = mainMenuMusic.volume > 0 ? 0 : 1;
+        }
     }
 }
