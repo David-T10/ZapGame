@@ -13,7 +13,7 @@ public class JumpCommand : Command
         this.jumpForce = playerJumpForce;
     }
 
-    // Update is called once per frame
+    
     public void Execute()
     {
         rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 

@@ -37,7 +37,7 @@ public class ItemPickup : MonoBehaviour
 
     private void Awake()
     {
-        uiScore = FindObjectOfType<UIScore>(); // Use FindObjectOfType directly
+        uiScore = FindObjectOfType<UIScore>(); 
         playerMovement = GetComponent<PlayerMovement>();
         originalJumpVal = playerMovement.GetJumpValue();
         originalMovementSpeedVal = playerMovement.GetMovementSpeedValue();
@@ -60,7 +60,7 @@ public class ItemPickup : MonoBehaviour
             playerSprite.color = fruitData.color;
             StartCoroutine(RevertColorAfter(powerUpDuration));
 
-            // Pass the score gained from collecting the item to IncrementScore
+            
             if (collision.gameObject.tag == "Apple")
             {
                 uiScore.IncrementScore(appleScore);
@@ -71,7 +71,7 @@ public class ItemPickup : MonoBehaviour
                 uiScore.IncrementScore(bananaScore);
                 BananaPowerUp();
             }
-            // No need to update the score UI here
+            
             fruitDataMap[collision.gameObject.tag] = fruitData;
         }
     }

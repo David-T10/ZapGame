@@ -15,7 +15,6 @@ public class MoveCommand : Command
     }
 
 
-    // Update is called once per frame
     public void Execute()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
