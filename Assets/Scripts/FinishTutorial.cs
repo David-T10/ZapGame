@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class FinishTutorial : MonoBehaviour
 {
     private AudioSource finishSoundEffect;
+    private TutorialManager tutorialManager;
     private bool finishedTutorial = false;
     private UIScore uiScore;
     private int completeLevelScore = 10;
@@ -23,6 +24,10 @@ public class FinishTutorial : MonoBehaviour
             finishSoundEffect.Play();
             finishedTutorial = true;
             uiScore.IncrementScore(completeLevelScore);
+            if (tutorialManager != null)
+            {
+                tutorialManager.tutorialCompleted = true;  
+            }
             Invoke("CompleteLevel", 2f);
         }
     }

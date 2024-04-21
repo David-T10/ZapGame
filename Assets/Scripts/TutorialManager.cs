@@ -6,6 +6,7 @@ public class TutorialManager : MonoBehaviour
 {
     public HintController hintController;
     public List<string> hints = new List<string>();
+    public bool tutorialCompleted = false;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class TutorialManager : MonoBehaviour
         hints.Add("You can use moving platforms \nto get across!");
         hints.Add("Trampolines give you \na jump boost!");
         hints.Add("Collect bananas for a \nspeed boost and +3 score!");
-        hints.Add("Falling or losing all\nyour health means death, score resets to 0!");
+        hints.Add("Falling or losing your \nhealth = death, score resets to 0!");
         hints.Add("Finishing the level \ngives you extra points!");
 
         StartCoroutine(ShowHints());
@@ -25,10 +26,13 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator ShowHints()
     {
-        for (int i = 0; i < hints.Count; i++)
+        while (!tutorialCompleted)
         {
-            hintController.ShowHint(hints[i], 6f);
-            yield return new WaitForSeconds(4f);
+            for (int i = 0; i < hints.Count; i++)
+            {
+                hintController.ShowHint(hints[i], 6f);
+                yield return new WaitForSeconds(4f);
+            }
         }
     }
 }
