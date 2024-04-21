@@ -93439,6 +93439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hintController: {fileID: 1821245237}
   hints: []
+  tutorialCompleted: 0
 --- !u!1 &1948786234
 GameObject:
   m_ObjectHideFlags: 0
@@ -93726,7 +93727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2054187925130368338, guid: e26634b3374ce8c46b58d0e37005fc13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.9
+      value: -7.204
       objectReference: {fileID: 0}
     - target: {fileID: 2054187925130368338, guid: e26634b3374ce8c46b58d0e37005fc13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -94438,6 +94439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hintController: {fileID: 1821245237}
   hints: []
+  tutorialCompleted: 0
 --- !u!1001 &4439016734260657485
 PrefabInstance:
   m_ObjectHideFlags: 0

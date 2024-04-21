@@ -61446,7 +61446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 78805944639052648, guid: cab6d9387b2e3fa47b4b13877a4d2751, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.8
+      value: -11.1
       objectReference: {fileID: 0}
     - target: {fileID: 78805944639052648, guid: cab6d9387b2e3fa47b4b13877a4d2751, type: 3}
       propertyPath: m_LocalPosition.z
@@ -61860,6 +61860,14 @@ PrefabInstance:
     - target: {fileID: 1602552726267635357, guid: 87f2b9ed513929341ab4b2c2e8c05fd7, type: 3}
       propertyPath: m_Name
       value: FrogPatrol
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912237100335348556, guid: 87f2b9ed513929341ab4b2c2e8c05fd7, type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912237100335348556, guid: 87f2b9ed513929341ab4b2c2e8c05fd7, type: 3}
+      propertyPath: enemyRange
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4912237100335348556, guid: 87f2b9ed513929341ab4b2c2e8c05fd7, type: 3}
       propertyPath: playerPosition
